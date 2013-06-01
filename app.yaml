@@ -5,7 +5,10 @@ api_version: 1
 threadsafe: true
 
 handlers:
-- url: /*
+- url: /cronUpdatePrices
+  script: updatePrices.app
+
+- url: /
   script: investmenttracker.app
 libraries:
 - name: jinja2
