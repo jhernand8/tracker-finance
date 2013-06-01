@@ -1,4 +1,4 @@
-from google.appengine.ext. import db
+from google.appengine.ext import db
 
 # A scheduled investment of some amount each month on the given
 # day of the month.
