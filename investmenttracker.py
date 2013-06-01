@@ -8,7 +8,6 @@ from datetime import datetime
 from datetime import timedelta
 import time
 from string import Template
-from investment import investment
 from stockPrice import stockPrice
 from collections import namedtuple
 
@@ -17,7 +16,7 @@ jinja_environment = jinja2.Environment(
 
 class MainPage(webapp2.RequestHandler):
   def get(self):
-    invs = investment.all();
+   #invs = investment.all();
     sps = stockPrice.all();
     self.response.out.write("done");
 
