@@ -1,5 +1,5 @@
 from stockPrice import stockPrice
-from stockUpdateDate import StockUpdateDate
+from StockUpdateDate import StockUpdateDate
 import datetime
 from datetime import *
 import webapp2

@@ -3,3 +3,6 @@ indexes:
   properties:
   - name: ticker
   - name: date
+- kind: Investment
+  properties:
+  - name: ticker

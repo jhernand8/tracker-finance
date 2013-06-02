@@ -1,0 +1,24 @@
+<html>
+	<body>
+		<h3>Summary Info</h3>
+		<table>
+			<tr>
+				<td>Ticker</td>
+				<td>Amount put in</td>
+				<td>Current value</td>
+				<td>Shares</td>
+				<td>Percentage</td>
+			</tr>
+
+			{% for data in summaryData: %}
+			<tr>
+			  <td>{{data.ticker}}</td>
+			  <td>{{data.amount}}</td>
+			  <td>{{data.value}}</td>
+			  <td>{{data.shares}}</td>
+			  <td>{{data.percentage}}</td>
+		        </tr>
+			{% endfor %}
+		</table>
+</body>
+</html>
