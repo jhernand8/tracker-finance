@@ -1,0 +1,5 @@
+indexes:
+- kind: stockPrice
+  properties:
+  - name: ticker
+  - name: date

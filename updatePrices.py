@@ -30,11 +30,10 @@ class MainPage(webapp2.RequestHandler):
 		    keystr = s.ticker + "_" + str(d.year) + "_" + str(d.month) + "_" + str(d.day);
 		    dateprice = stockPrice(ticker=s.ticker, date=d, price=Decimal(dateToPrice[d]), key_name=keystr);
 		    dateprice.put();
-		    count = count + 1;
 	    s.date = date.today() - timedelta(days=3);
 	    s.put();
     if (not hasAny):
-	    obj = StockUpdateDate(ticker="aepgx", date=date(year=2011,month=1,day=1), key_name="aepgx");
+	    obj = StockUpdateDate(ticker="vtsmx", date=date(year=2013,month=1,day=1), key_name="goog");
 	    obj.put();
     self.response.out.write("finished");
 
