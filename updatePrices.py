@@ -14,10 +14,8 @@ class MainPage(webapp2.RequestHandler):
   def get(self):
     stocksLastUpdate = StockUpdateDate.all();
     stocks = stocksLastUpdate.run();
-    hasAny = False;
     # find all tickers that we need to update
     for s in stocks:
-	    hasAny = True;
 	    currDate = s.date;
 	    currDate = currDate;
 	    # get the closing price data and create map of date to price
@@ -32,9 +30,6 @@ class MainPage(webapp2.RequestHandler):
 		    dateprice.put();
 	    s.date = date.today() - timedelta(days=3);
 	    s.put();
-    if (not hasAny):
-	    obj = StockUpdateDate(ticker="vtsmx", date=date(year=2013,month=1,day=1), key_name="goog");
-	    obj.put();
     self.response.out.write("finished");
 
 app = webapp2.WSGIApplication([('/cronUpdatePrices', MainPage)],

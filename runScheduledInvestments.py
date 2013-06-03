@@ -6,7 +6,6 @@ from investment import Investment
 from stockPrice import stockPrice
 from decimal import *
 from google.appengine.ext import db
-import logging
 class RunScheduledInvestments(webapp2.RequestHandler):
   def get(self):
     lastRunDateObj = ScheduledInvestRunDate.all().get();
@@ -20,9 +19,7 @@ class RunScheduledInvestments(webapp2.RequestHandler):
     endDate = date.today() - timedelta(days=3);
     currDate = startDate;
     scheduleQuery = ScheduledInvestment.all();
-    hasAny = False;
     for scheduledInvest in scheduleQuery:
-      hasAny = True;
       while (True):
         if currDate.day == scheduledInvest.dayOfMonth:
           sharePrice = self.get_share_price(currDate, scheduledInvest.ticker);
@@ -35,9 +32,6 @@ class RunScheduledInvestments(webapp2.RequestHandler):
         currDate = currDate + timedelta(days=1);
         if currDate > endDate:
           break;
-    if not hasAny:
-      testInvest = ScheduledInvestment(ticker="vtsmx", amount=50, dayOfMonth=5);
-      testInvest.put();
     lastRunDateObj.lastRunDate = endDate;
     lastRunDateObj.put();
     self.response.out.write("scheduled");
@@ -49,8 +43,6 @@ class RunScheduledInvestments(webapp2.RequestHandler):
   def get_share_price(self, date, ticker):
     q = db.Query(stockPrice).filter("ticker", ticker).filter("date", date);
     sPrice = q.get();
-    logging.warn("query: " + ticker + ":" + str(date) + "\n");
-    print "query" + ticker + ":  " + str(date) + "\n";
     return sPrice.price;
 
 app = webapp2.WSGIApplication([('/runScheduledInvests', RunScheduledInvestments)], debug=True)
